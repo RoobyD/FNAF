@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>5 Nights at the Museum</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- TITLE SCREEN -->
+<div id="title-screen" class="screen active">
+  <div class="title-art">🏛️</div>
+  <h1>5 Nights at the Museum</h1>
+  <p class="subtitle">A security guard's worst shift</p>
+  <p class="flavor">
+    Welcome to your new job as overnight security guard at the Westbrook Natural History Museum.<br><br>
+    The exhibits have been... acting strange after hours. Keep the doors closed,
+    watch the cameras, and survive until 6 AM.
+  </p>
+  <button class="btn" onclick="startGame()">Start Night 1</button>
+</div>
+
+<!-- OFFICE / GAME SCREEN -->
+<div id="office" class="screen">
+  <div id="top-bar">
+    <div class="info">CAM SYSTEM — ONLINE</div>
+    <div class="power-wrap">
+      <span class="info" id="power-pct">Power: 100%</span>
+      <div id="power-bar-wrap">
+        <div id="power-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="cam-panel">
+    <!-- Main camera view -->
+    <div id="cam-view">
+      <div id="cam-label">CAM 1A — MAIN HALL</div>
+
+      <!--
+        GREEN SCREEN LAYER
+        ==================
+        This div sits behind the character/entity layer.
+        Each camera can have its own background image set in game.js
+        inside the CAM_BACKGROUNDS array.
+
+        To use your group's animations or images, put the file paths
+        in CAM_BACKGROUNDS in game.js — e.g. "img/egypt.gif"
+        The green (#00b140) shows through wherever no image is set.
+        Perfect for video editing / chroma key compositing.
+      -->
+      <div id="cam-greenscreen"></div>
+
+      <canvas id="cam-static" width="600" height="300"></canvas>
+      <div id="cam-entity">
+        <div id="cam-entity-art"></div>
+        <div id="cam-entity-name"></div>
+      </div>
+      <div id="cam-empty">— CLEAR —</div>
+    </div>
+
+    <!-- Camera thumbnail grid (6 cameras) -->
+    <div id="cam-grid">
+      <div class="cam-thumb active" onclick="selectCam(0)" id="ct0">
+        <div class="cam-num">CAM 1A</div>
+        <div class="cam-name">Main Hall</div>
+        <div class="cam-alert">! MOTION</div>
+      </div>
+      <div class="cam-thumb" onclick="selectCam(1)" id="ct1">
+        <div class="cam-num">CAM 2A</div>
+        <div class="cam-name">Egypt Wing</div>
+        <div class="cam-alert">! MOTION</div>
+      </div>
+      <div class="cam-thumb" onclick="selectCam(2)" id="ct2">
+        <div class="cam-num">CAM 3B</div>
+        <div class="cam-name">Dino Hall</div>
+        <div class="cam-alert">! MOTION</div>
+      </div>
+      <div class="cam-thumb" onclick="selectCam(3)" id="ct3">
+        <div class="cam-num">CAM 4C</div>
+        <div class="cam-name">Left Vent</div>
+        <div class="cam-alert">! MOTION</div>
+      </div>
+      <div class="cam-thumb" onclick="selectCam(4)" id="ct4">
+        <div class="cam-num">CAM 5A</div>
+        <div class="cam-name">Greek Hall</div>
+        <div class="cam-alert">! MOTION</div>
+      </div>
+      <div class="cam-thumb" onclick="selectCam(5)" id="ct5">
+        <div class="cam-num">CAM 6B</div>
+        <div class="cam-name">Right Vent</div>
+        <div class="cam-alert">! MOTION</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bottom-bar">
+    <button class="door-btn" id="left-door" onclick="toggleDoor('left')">
+      Left Door<br><span id="left-door-status">OPEN</span>
+    </button>
+    <div id="time-display">
+      <div id="time-text">12:00 AM</div>
+      <div id="night-text">NIGHT 1</div>
+    </div>
+    <button class="door-btn" id="right-door" onclick="toggleDoor('right')">
+      Right Door<br><span id="right-door-status">OPEN</span>
+    </button>
+  </div>
+</div>
+
+<!-- JUMPSCARE OVERLAY -->
+<div id="jumpscare">
+  <div class="js-art" id="js-art">🏺</div>
+  <div class="js-text">THE EXHIBIT HAS ESCAPED</div>
+</div>
+
+<!-- RESULT SCREEN -->
+<div id="result-screen" class="screen">
+  <div id="result-icon" style="font-size:60px">🌅</div>
+  <h2 id="result-title">6 AM — YOU SURVIVED</h2>
+  <p id="result-msg">You made it through the night.</p>
+  <button class="btn" onclick="restartGame()">Try Again</button>
+</div>
+
+<div id="scanlines"></div>
+
+<script src="game.js"></script>
+</body>
+</html>

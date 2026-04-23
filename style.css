@@ -1,0 +1,373 @@
+/* =============================================
+   5 NIGHTS AT THE MUSEUM — style.css
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold: #c8a96e;
+  --gold-dim: #7a6040;
+  --gold-dark: #4a3820;
+  --bg: #0d0d0d;
+  --bg-deep: #0a0a0a;
+  --bg-mid: #0f0f0f;
+  --border: #2a2010;
+  --danger: #e05030;
+  --danger-dim: #8b0000;
+}
+
+body {
+  background: var(--bg);
+  color: var(--gold);
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ── SCANLINES OVERLAY ── */
+#scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  z-index: 100;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; }
+.screen.active { display: flex; }
+
+/* ── TITLE SCREEN ── */
+#title-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg);
+}
+
+.title-art { font-size: 52px; margin-bottom: 12px; }
+
+#title-screen h1 {
+  font-size: 28px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(200,169,110,0.4);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--gold-dim);
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+}
+
+.flavor {
+  font-size: 13px;
+  color: #8a7050;
+  max-width: 400px;
+  line-height: 1.9;
+  margin-bottom: 2.5rem;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 10px 32px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* ── OFFICE ── */
+#office {
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg);
+}
+
+/* TOP BAR */
+#top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-deep);
+  flex-shrink: 0;
+}
+
+.info {
+  font-size: 11px;
+  color: var(--gold-dim);
+  letter-spacing: 1px;
+}
+
+.power-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#power-bar-wrap {
+  width: 120px;
+  height: 8px;
+  background: #1a1a1a;
+  border: 1px solid #3a3020;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#power-bar {
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  border-radius: 4px;
+  transition: width 0.5s, background 0.5s;
+}
+
+/* CAM PANEL */
+#cam-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+/* MAIN CAM VIEW */
+#cam-view {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+#cam-label {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  opacity: 0.7;
+  z-index: 2;
+}
+
+#cam-static {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#cam-entity {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+#cam-entity-art {
+  font-size: 90px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  filter: sepia(1) saturate(0.3) brightness(0.6);
+}
+
+#cam-entity-name {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#cam-empty {
+  font-size: 13px;
+  color: #3a3020;
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+/* CAM THUMBNAIL GRID — 6 cameras, 2 rows of 3 */
+#cam-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/*
+  GREEN SCREEN LAYER
+  ==================
+  Sits behind the character layer in the camera view.
+  Default is solid chroma-key green (#00b140).
+  When a camera has a background image set in game.js,
+  it replaces this color. The green shows wherever
+  the image is transparent — perfect for your group
+  to drop in animations or GIFs on top in a video editor.
+*/
+#cam-greenscreen {
+  position: absolute;
+  inset: 0;
+  background-color: #00b140;   /* standard chroma-key green */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  transition: background-image 0.1s;
+}
+
+.cam-thumb {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 6px 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--bg-deep);
+}
+.cam-thumb:hover { border-color: var(--gold); }
+.cam-thumb.active { border-color: var(--gold); background: #1a1208; }
+.cam-thumb.alerted { border-color: var(--danger); }
+
+.cam-num  { font-size: 10px; color: var(--gold-dim); }
+.cam-name { font-size: 10px; color: var(--gold); }
+
+.cam-alert {
+  color: var(--danger);
+  font-size: 10px;
+  display: none;
+}
+.cam-thumb.alerted .cam-alert { display: block; }
+
+/* BOTTOM BAR */
+#bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  gap: 10px;
+  flex-shrink: 0;
+  background: var(--bg-deep);
+}
+
+.door-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--gold-dark);
+  background: var(--bg-deep);
+  color: var(--gold);
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  border-radius: 3px;
+  line-height: 1.6;
+}
+.door-btn:hover { background: #1a1208; }
+.door-btn.closed {
+  background: #1a0a00;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+#time-display { text-align: center; }
+#time-text    { font-size: 22px; color: var(--gold); letter-spacing: 2px; }
+#night-text   { font-size: 10px; color: var(--gold-dim); letter-spacing: 2px; }
+
+/* ── JUMPSCARE ── */
+#jumpscare {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--danger-dim);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 200;
+}
+#jumpscare.active { display: flex; }
+
+.js-art {
+  font-size: 130px;
+  animation: shake 0.1s infinite;
+}
+.js-text {
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 3px;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+@keyframes shake {
+  0%,100% { transform: translate(-4px, 2px); }
+  25%      { transform: translate(4px, -2px); }
+  50%      { transform: translate(-3px, 4px); }
+  75%      { transform: translate(3px, -3px); }
+}
+
+/* ── RESULT SCREEN ── */
+#result-screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg);
+}
+#result-screen h2 {
+  font-size: 26px;
+  margin: 1rem 0 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+#result-screen p {
+  font-size: 13px;
+  color: #8a7050;
+  max-width: 380px;
+  line-height: 1.9;
+  margin-bottom: 2rem;
+}
