@@ -55,7 +55,7 @@ body {
   min-height: 100vh;
   text-align: center;
   padding: 2rem;
-  background: var(--bg);
+  background: #00b140; /* chroma-key green — edit over this in post */
 }
 
 .title-art { font-size: 52px; margin-bottom: 12px; }

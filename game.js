@@ -5,35 +5,21 @@
 // ── CONFIGURATION ────────────────────────────
 // Edit these to add/change enemies for your project
 
+// ── ADD YOUR CHARACTERS HERE ──────────────────
+// Each object is one enemy. Fill these in once your
+// teammates have made their characters.
+//
+// Template:
+// {
+//   name:       "Character Name",
+//   art:        "img/your-character.gif",  // path to your character image
+//   startCam:   1,       // which camera they start at (0–5)
+//   aggression: 0.25,    // 0.0 = never moves, 1.0 = moves every tick
+//   door:       "left",  // "left" or "right"
+// },
+
 const ENEMIES = [
-  {
-    name:        "The Mummy",
-    art:         "🏺",        // swap with <img> tag or your own art
-    startCam:    1,           // which camera they start at (0-indexed)
-    aggression:  0.30,        // 0.0–1.0: how often they move per tick
-    door:        "left",      // which door they attack from
-  },
-  {
-    name:        "Rex (T-Rex Skeleton)",
-    art:         "🦕",
-    startCam:    2,
-    aggression:  0.25,
-    door:        "right",
-  },
-  {
-    name:        "The Statue",
-    art:         "🗿",
-    startCam:    4,
-    aggression:  0.20,
-    door:        "left",
-  },
-  {
-    name:        "The Knight",
-    art:         "⚔️",
-    startCam:    6,
-    aggression:  0.22,
-    door:        "right",
-  },
+  // your teammates' characters go here
 ];
 
 // Camera room names (6 rooms, 0-indexed)
@@ -145,7 +131,7 @@ function startLoops() {
     if (!gameRunning) return;
     drainPower();
     moveEnemies();
-    checkJumpscare();
+    // checkJumpscare() — disabled so footage can be recorded cleanly
     updateCamAlerts();
     updateUI();
   }, TICK_MS);
