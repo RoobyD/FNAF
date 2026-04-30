@@ -24,12 +24,12 @@ const ENEMIES = [
 
 // Camera room names (6 rooms, 0-indexed)
 const CAM_NAMES = [
-  "Main Hall",    // 0
-  "Egypt Wing",   // 1
-  "Dino Hall",    // 2
-  "Left Vent",    // 3  ← left door approach
-  "Greek Hall",   // 4
-  "Right Vent",   // 5  ← right door approach
+  "Records",        // 0 — top left
+  "Office",         // 1 — top middle
+  "Outside Office", // 2 — top right
+  "Upstairs",       // 3 — bottom left
+  "Entrance",       // 4 — bottom middle
+  "Reading Room",   // 5 — bottom right
 ];
 
 // ── CAMERA BACKGROUNDS ────────────────────────
@@ -44,12 +44,12 @@ const CAM_NAMES = [
 //   ""                      — pure green screen (default)
 //
 const CAM_BACKGROUNDS = [
-  "",   // CAM 0 — Main Hall    → replace with e.g. "img/main-hall.gif"
-  "",   // CAM 1 — Egypt Wing   → replace with e.g. "img/egypt.gif"
-  "",   // CAM 2 — Dino Hall    → replace with e.g. "img/dino.gif"
-  "",   // CAM 3 — Left Vent    → replace with e.g. "img/vent-left.jpg"
-  "",   // CAM 4 — Greek Hall   → replace with e.g. "img/greek.gif"
-  "",   // CAM 5 — Right Vent   → replace with e.g. "img/vent-right.jpg"
+  "",   // CAM 0 — Records
+  "",   // CAM 1 — Office
+  "",   // CAM 2 — Outside Office
+  "",   // CAM 3 — Upstairs
+  "",   // CAM 4 — Entrance
+  "",   // CAM 5 — Reading Room
 ];
 
 // In-game hour labels

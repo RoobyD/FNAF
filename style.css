@@ -60,6 +60,19 @@ body {
 
 .title-art { font-size: 52px; margin-bottom: 12px; }
 
+/* Bordered text box floating over the green screen */
+#title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.82);
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+  max-width: 460px;
+  width: 90%;
+}
+
 #title-screen h1 {
   font-size: 28px;
   letter-spacing: 4px;

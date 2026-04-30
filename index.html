@@ -10,17 +10,19 @@
 
 <!-- TITLE SCREEN -->
 <div id="title-screen" class="screen active">
-  <div class="title-art">🏛️</div>
-  <h1>5 Nights at Trentoniana</h1>
-  <p class="subtitle">A security guard's worst shift</p>
-  <p class="flavor">
-    Welcome to your new job as overnight security guard at Trentoniana —
-    Trenton's own archive of local history, artifacts, and forgotten relics.<br><br>
-    Something is wrong. The exhibits that have sat still for decades are
-    no longer staying in their cases. Keep the doors sealed, watch the
-    cameras, and survive until 6 AM.
-  </p>
-  <button class="btn" onclick="startGame()">Start Night 1</button>
+  <div id="title-box">
+    <div class="title-art">🏛️</div>
+    <h1>5 Nights at Trentoniana</h1>
+    <p class="subtitle">A security guard's worst shift</p>
+    <p class="flavor">
+      Welcome to your new job as overnight security guard at Trentoniana —
+      Trenton's own archive of local history, artifacts, and forgotten relics.<br><br>
+      Something is wrong. The exhibits that have sat still for decades are
+      no longer staying in their cases. Keep the doors sealed, watch the
+      cameras, and survive until 6 AM.
+    </p>
+    <button class="btn" onclick="startGame()">Start Night 1</button>
+  </div>
 </div>
 
 <!-- OFFICE / GAME SCREEN -->
@@ -65,33 +67,33 @@
     <!-- Camera thumbnail grid (6 cameras) -->
     <div id="cam-grid">
       <div class="cam-thumb active" onclick="selectCam(0)" id="ct0">
-        <div class="cam-num">CAM 1A</div>
-        <div class="cam-name">Main Hall</div>
+        <div class="cam-num">CAM 1</div>
+        <div class="cam-name">Records</div>
         <div class="cam-alert">! MOTION</div>
       </div>
       <div class="cam-thumb" onclick="selectCam(1)" id="ct1">
-        <div class="cam-num">CAM 2A</div>
-        <div class="cam-name">Egypt Wing</div>
+        <div class="cam-num">CAM 2</div>
+        <div class="cam-name">Office</div>
         <div class="cam-alert">! MOTION</div>
       </div>
       <div class="cam-thumb" onclick="selectCam(2)" id="ct2">
-        <div class="cam-num">CAM 3B</div>
-        <div class="cam-name">Dino Hall</div>
+        <div class="cam-num">CAM 3</div>
+        <div class="cam-name">Outside Office</div>
         <div class="cam-alert">! MOTION</div>
       </div>
       <div class="cam-thumb" onclick="selectCam(3)" id="ct3">
-        <div class="cam-num">CAM 4C</div>
-        <div class="cam-name">Left Vent</div>
+        <div class="cam-num">CAM 4</div>
+        <div class="cam-name">Upstairs</div>
         <div class="cam-alert">! MOTION</div>
       </div>
       <div class="cam-thumb" onclick="selectCam(4)" id="ct4">
-        <div class="cam-num">CAM 5A</div>
-        <div class="cam-name">Greek Hall</div>
+        <div class="cam-num">CAM 5</div>
+        <div class="cam-name">Entrance</div>
         <div class="cam-alert">! MOTION</div>
       </div>
       <div class="cam-thumb" onclick="selectCam(5)" id="ct5">
-        <div class="cam-num">CAM 6B</div>
-        <div class="cam-name">Right Vent</div>
+        <div class="cam-num">CAM 6</div>
+        <div class="cam-name">Reading Room</div>
         <div class="cam-alert">! MOTION</div>
       </div>
     </div>
