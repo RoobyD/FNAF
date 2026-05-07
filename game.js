@@ -365,3 +365,16 @@ function show(id) {
     }
   });
 }
+document.addEventListener('keydown', (e) => {
+  switch(e.key) {
+    case '1': selectCam(0); break;
+    case '2': selectCam(1); break;
+    case '3': selectCam(2); break;
+    case '4': selectCam(3); break;
+    case '5': selectCam(4); break;
+    case '6': selectCam(5); break;
+    case 'q': toggleDoor('left');  break;
+    case 'e': toggleDoor('right'); break;
+    
+  }
+});
